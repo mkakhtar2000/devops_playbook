@@ -1,6 +1,6 @@
 ---
 - name: nginx playbook
-  hosts: all
+  hosts: usa
   #become_method: sudo
   become: yes
   #become_user: root
