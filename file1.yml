@@ -1,0 +1,25 @@
+- name: loop with register
+  hosts: usa
+  gather_facts: no
+  become: yes
+
+  tasks:
+   
+   - name: create empty file
+     file:
+       path: /home/devops/{{ item }}
+       state: touch
+     loop:
+       - aa
+       - bb
+       - cc
+
+   - name: create soft link
+     file:
+       src: /home/devops/{{ item.source }}
+       dest: /home/devops/{{ item.dest  }}
+       state: link
+     loop:
+       - { source: aa, dest: xx }
+       - { source: bb, dest: yy }
+       - { source: cc, dest: zz }

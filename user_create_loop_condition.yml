@@ -1,0 +1,31 @@
+---
+- name: user create with condition
+  hosts: usa
+  gather_facts: no
+  become: yes
+
+  vars:
+    user_group: [ devops, apps, dba ]
+    user_create:
+      - { name: docker, group: devops }
+      - { name: admin, group: devops }
+      - { name: jboss, group: apps }
+      - { name: tomcat, group: devops }
+      - { name: iimsprd, group: dba }
+    
+    status: present
+
+  tasks:
+  - name: create group 
+    group:
+      name: "{{ item }}"
+      state: "{{ status }}"
+    loop: "{{ user_group }}"
+
+  - name: create users
+    user:
+      name: "{{ item.name }}"
+      group: "{{ item.group }}"
+      state: "{{ status }}"
+    loop: "{{ user_create }}"
+    when: item.group == "devops"

@@ -1,0 +1,9 @@
+---
+- name: install and restart apache
+  hosts: usa
+  gather_facts: yes
+  become: yes
+       
+  tasks:
+
+  

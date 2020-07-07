@@ -1,0 +1,25 @@
+---
+- name: install and restart apache
+  hosts: usa
+  gather_facts: yes
+  become: yes
+
+  tasks:
+  
+  - name: update httpd config file
+    copy:
+      src: httpd.conf
+      dest: /etc/httpd/conf
+    notify: restart httpd
+  
+  handlers:
+    - name: restart httpd
+      service:
+        name: httpd
+        state: restarted
+
+  
+
+
+    
+  

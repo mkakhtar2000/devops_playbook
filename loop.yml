@@ -1,0 +1,35 @@
+---
+- name: gather facts
+  hosts: usa
+  gather_facts: false
+  become: yes
+
+  vars:
+   
+    user_create:
+      - { user_name: prdoracle, group_name: dba,    user_shell: /bin/bash }
+      - { user_name: prdjboss,  group_name: jboss,  user_shell: /bin/csh  }
+      - { user_name: prdtomcat, group_name: tomcat, user_shell: /bin/bash }
+
+    group_name: [ dba, jboss, tomcat ] 
+
+    status: present
+        
+  tasks:
+  
+  - name: Create group for my app
+    group:
+      name: "{{ item }}"
+      state: "{{ status }}"
+    loop: "{{ group_name }}"
+
+  - name: Create app users
+    user:
+      name:  "{{ item.user_name   }}"
+      group: "{{ item.group_name  }}"
+      shell: "{{ item.user_shell  }}"
+      state: "{{ status }}"
+    loop: "{{ user_create }}"
+      
+ 
+      

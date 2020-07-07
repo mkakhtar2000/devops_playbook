@@ -1,0 +1,17 @@
+[all]
+k-worker1
+k-worker2
+
+
+[canada]
+k-worker1
+
+[usa]
+k-worker2
+
+[northa]
+k-worker1
+k-worker2
+
+[kube_host]
+k1-master1

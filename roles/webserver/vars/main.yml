@@ -1,0 +1,4 @@
+---
+pkg: 'httpd'
+status: 'present'
+start_service: 'httpd'

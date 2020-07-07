@@ -1,0 +1,9 @@
+---
+# tasks file for myapp
+#
+
+ - name: Copy motd file
+   template: 
+     src: motd.j2
+     dest: /etc/motd
+

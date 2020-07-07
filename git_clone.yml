@@ -1,0 +1,12 @@
+- name: Git Clone
+  hosts: localhost
+  gather_facts: no
+  become: no
+  
+  tasks:
+  - name: clone git repo
+    git:
+       repo: "https://github.com/amoeed/testscript.git"
+       dest: "/home/devops/testscript"
+       version: master
+    

@@ -1,0 +1,15 @@
+---
+- name: packages playbook
+  hosts: canada
+  become: yes
+  
+  vars_files:
+    - varfile/webvar.yml
+    - varfile/user_cred.yml
+    
+  tasks:
+  - name: create user
+    user:
+      name: test7
+      state: absent
+      #password: "{{ user_passwd }}"

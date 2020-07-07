@@ -1,0 +1,10 @@
+users:
+  amoeed:
+    first_name: "Abdul"
+    last_name: "Moeed"
+    home_directory: "/home/amoeed"
+  mqadir:
+    first_name: "Tariq"
+    last_name: "Qadir"
+    home_directory: "/home/mqadir"
+

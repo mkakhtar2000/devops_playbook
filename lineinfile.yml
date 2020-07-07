@@ -1,0 +1,16 @@
+- name: line in file
+  hosts: usa
+  gather_facts: no
+  become: yes
+
+
+  tasks:
+  - name: Add line in file
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      line: "UserPAM no"
+      insertafter: "UsePAM yes"
+      state: present
+        
+     
+     

@@ -1,0 +1,31 @@
+- name: Create LVM
+  hosts: usa
+  gather_facts: yes
+  become: yes
+
+  vars:
+    vg_name: 'datavg1'
+    lv_name: [ vol1, vol2, vol3 ]
+    lv_size: 200
+    
+  tasks:
+  - name: create lv
+    lvol:
+      vg: "{{ vg_name }}"
+      lv: "{{ item }}"
+      size: "{{ lv_size | int }}"
+    loop: "{{ lv_name }}"
+    when: 
+          - vg_name in ansible_facts.lvm.vgs
+          - ansible_facts.lvm.vgs[vg_name].free_g > "0.90" 
+
+  - fail:
+      msg: "Free space is less than 0.90 GB"
+    when:  
+          - vg_name in ansible_facts.lvm.vgs
+          - ansible_facts.lvm.vgs[vg_name].free_g < "0.90"
+
+  - fail:
+      msg: "{{ vg_name }} is NOT FOUND"
+    when:
+          - vg_name not in ansible_facts.lvm.vgs

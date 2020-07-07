@@ -1,0 +1,23 @@
+- name: Kube deployment
+  hosts: kube_host
+  remote_user: docker
+  gather_facts: no
+  
+  vars_files:
+    - varfile/kube-myapp1.yml 
+    
+
+  tasks:
+  - name: Build docker image for {{ app_name }}
+    docker_image:
+      build:
+        path: "{{ project_path }}"
+        pull: yes
+      name:  myapp1
+      tag: "{{ tag }}"
+      source: build
+
+  - name: Create kube deployment file for {{ app_name }}
+    template:
+      src: "{{ src_template }}"
+      dest: "{{dest_deployment }}"

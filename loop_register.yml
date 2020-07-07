@@ -1,0 +1,22 @@
+---
+- name: loop with register
+  hosts: usa
+  gather_facts: no
+  become: no
+
+  vars:
+    list_data: [ data1, data2, data3, data4 ]
+
+    httpd_check: 
+
+  tasks:
+  - name: list of data register
+    shell: "echo {{ item }}"
+    register: data_output
+    loop: "{{ list_data }}"
+    
+
+  - debug:
+      msg: "{{ item.rc }}"
+    loop: "{{ data_output.results }}"
+  

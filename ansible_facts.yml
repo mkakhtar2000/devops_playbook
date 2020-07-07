@@ -1,0 +1,13 @@
+---
+- name: gather facts
+  hosts: canada
+  gather_facts: false
+
+  tasks:
+   - name: hostname
+     debug: 
+      msg: "{{ inventory_hostname }}"
+    
+
+
+      

@@ -1,0 +1,13 @@
+---
+  - hosts: usa
+    gather_facts: yes
+    become: yes
+
+    vars:
+        sys_owner: amoeed@gmail.com
+    tasks:
+
+    - include_role:
+        name: myapp
+      vars: 
+        sys_owner: amoeed@gmail.com

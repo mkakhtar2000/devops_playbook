@@ -1,0 +1,20 @@
+---
+- name: Add line
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+  - name: Create file
+    copy:
+      content: "My new file"
+      dest: "/var/tmp/myfile.txt"
+      
+
+  - name: Insert line
+    lineinfile:
+       path: "/var/tmp/myfile.txt"
+       #regexp: "My new file"
+       insertafter: "My new file"
+       line: "\nThis is second line"
+
+      

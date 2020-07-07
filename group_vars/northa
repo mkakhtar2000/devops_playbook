@@ -1,0 +1,5 @@
+user_name: devops1
+home_dir: /home/{{ user_name }}
+user_shell: /bin/bash
+status: absent
+action: absent

@@ -1,0 +1,31 @@
+---
+- name: Ansible block
+  hosts: usa
+  gather_facts: yes
+  become: yes
+
+  tasks:
+  - name: update sshd config file
+    copy:
+      src: ./sshd_master_config
+      dest: /etc/ssh/sshd_config
+      backup: yes
+      mode: 0600
+    notify: restart sshd
+  
+  # - name: update httpd config file
+  #  copy:
+  #    src: ./httpd_master_config
+  #    dest: /etc/httpd/conf/httpd.confg
+  #  notify: restart httpd
+
+  handlers:
+  - name: restart sshd
+    service:
+      name: sshd
+      state: restarted
+  
+ # - name: restart httpd
+ #   service:
+ #     name: httpd
+ #     state: restarted

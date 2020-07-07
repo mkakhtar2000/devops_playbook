@@ -1,0 +1,45 @@
+---
+## This is first palybook for devops
+
+  - name: this is first play
+    hosts: northa
+    become: yes
+
+    vars_files:
+      - ./varfile/webvar.yml
+  
+    tasks:
+    - name: "{{ user }} is going to create" 
+      user:
+        name:  "{{ user       }}"
+        state: "{{ status     }}"
+        shell: "{{ user_shell }}"
+    
+    
+    
+
+  
+
+      
+      
+
+
+      
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+

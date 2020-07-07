@@ -1,0 +1,7 @@
+---
+- name: Import "{{  pkg }} install tasks"
+  import_tasks: install_pkg.yml
+
+- name: Start "{{ pkg }} service"
+  import_tasks: start_pkg.yml
+

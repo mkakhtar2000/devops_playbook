@@ -1,0 +1,26 @@
+---
+- name: packages playbook
+  hosts: canada
+  become: yes
+
+  tasks:
+  - name: grep output
+    shell: "cat /etc/shadow |grep devops|awk '{print $1}'|sed -i 's/ab/gc'/g"
+    ignore_errors: true
+    register: grep_output
+  
+  - name: display output
+    debug: var=grep_output
+
+
+- name: check http connection
+  hosts: localhost
+  become: yes
+
+  tasks:
+  - name: check
+
+
+   
+     
+ 

@@ -1,0 +1,25 @@
+---
+- name: nginx playbook
+  hosts: northa
+  become_method: sudo
+  become: true
+  become_user: root
+
+  vars_files:
+    - ./varfile/webvar.yml
+
+  tasks:
+    - name: install {{ pkg }}
+      yum:
+        name: "{{ pkg }}"
+        state: latest
+
+    - name: copy index file for {{ pkg }}
+      copy:
+        src: ./index.html
+        dest: /usr/share/{{ pkg }}/html/index.html
+
+    - name: start / verify service
+      service:
+        name: "{{ pkg }}"
+        state: started

@@ -1,0 +1,8 @@
+project_path: /home/docker/kube-deployments/project/app1
+tag: v1
+src_template: /home/devops/playbook/kube-template/myapp_template.j2
+dest_deployment: "{{ project_path }}/{{ app_name }}_deployment.yml"
+app_name: "myapp1"
+replicas: 2
+image_name: nginx
+image_tag: "v1"

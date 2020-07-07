@@ -1,0 +1,17 @@
+---
+- name: k8s objects
+  hosts: kube_host
+  gather_facts: no
+  #remote_user: docker
+  become: no
+  connection: local
+  vars:
+    ansible_python_interpreter: "{{ ansible_playbook_python }}"
+
+  tasks:
+  - name: create namespace
+    k8s:
+      name: prd_test
+      api_version: v1
+      kind: Namespace
+      state: present

@@ -1,0 +1,10 @@
+- name: packages playbook
+  hosts: canada
+  become: yes
+
+  tasks:
+  - name: docker image
+    docker_image: 
+      name: centos
+      source: pull
+      state: present

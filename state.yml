@@ -1,0 +1,16 @@
+- name: line in file
+  hosts: usa
+  gather_facts: no
+  become: yes
+
+  tasks:
+  - name: Add line in file
+    stat:
+      path: /etc/ssh/sshd_config
+    register: check_file
+  
+  - name: install new package
+    yum:
+      name: httpd
+      state: present
+    when: check_file.stat.exists

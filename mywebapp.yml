@@ -1,0 +1,14 @@
+- name: install and restart apache
+  hosts: usa
+  gather_facts: no
+  become: yes
+
+  tasks:
+  - name: Import httpd install 
+    import_tasks: httpd_install.yml
+
+  - name: Import httpd start
+    import_tasks: httpd_start.yml
+
+
+  
