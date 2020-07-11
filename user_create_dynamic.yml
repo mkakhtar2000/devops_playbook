@@ -2,8 +2,7 @@
 - name: User Create
   hosts: all
   gather_facts: false
-  #become: yes
-
+ 
   vars:
     input_file: user_list.csv
 
