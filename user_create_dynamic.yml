@@ -1,12 +1,17 @@
 ---
 - name: User Create
-  hosts: usa
+  hosts: all
   gather_facts: false
-  become: yes
+  #become: yes
 
   vars:
     input_file: user_list.csv
+
   tasks:
+  - set_fact: 
+       file_content: "{{ lookup('file', '{{ input_file }}').splitlines() }}"
+  
+ 
   - set_fact        :
       users_list    : "{{ users_list | default([]) + [ { 'user_name': user_name, 'user_comment': user_comment } ] }}"
     vars            :
