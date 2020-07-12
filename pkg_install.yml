@@ -1,7 +1,6 @@
 - name: Package installation
   hosts: usa
   gather_facts: yes
-  become: yes 
 
   tasks:
     
