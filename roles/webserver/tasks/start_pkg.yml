@@ -2,3 +2,4 @@
   service:
     name: "{{ start_service }}"
     state: started
+  when: pkg == 'present'
