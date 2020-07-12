@@ -4,8 +4,8 @@
   gather_facts: false
  
   vars:
-    input_file: user_list.csv
-
+    #input_file: user_list.csv
+    
   tasks:
   - set_fact: 
        file_content: "{{ lookup('file', '{{ input_file }}').splitlines() }}"

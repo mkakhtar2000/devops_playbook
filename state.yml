@@ -12,5 +12,5 @@
   - name: install new package
     yum:
       name: httpd
-      state: present
+      state: "{{ pkg_status }}"
     when: check_file.stat.exists
