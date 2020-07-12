@@ -1,20 +1,17 @@
 - name: Package installation
   hosts: usa
   gather_facts: yes
-
+  
+  
   tasks:
     
   - include_role:
        name: webserver
-    when: >
-         - ansible_distribution == "RedHat" or
-         - ansible_distribution == "CentOS"
+    when: ansible_distribution == "RedHat" or ansible_distribution == "CentOS"
 
   - debug: 
       msg: "{{ pkg }} not compatible with {{ ansible_distribution  }}"
-    when: >
-            - ansible_distribution != "RedHat" or
-            - ansible_distribution != "CentOS"
+    when: ansible_distribution != "RedHat" or ansible_distribution != "CentOS"
   
     
 
